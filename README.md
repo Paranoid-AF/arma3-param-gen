@@ -14,8 +14,9 @@ Before we get started, you should have Python 3 installed on your PC. [Go get it
 
 Also, make sure you have started the game via the launcher once.
 
-1. Download this repo as ZIP. See that big green button? Click it and you'll know where to go. (Sure, you could also clone this repo.)
+1. [Download](https://github.com/Paranoid-AF/arma3-param-gen/archive/refs/heads/master.zip) this tool.
 2. Extract that ZIP file.
-3. Fire up your command prompt, with `Win + R` and enter `cmd`.
-4. Use `cd` to go to the directory where you've just extracted.
-5. Enter `python .` and follow what it says. (**Remember there's a trailing dot in the command**)
+3. Double-click `PLAY.bat`.
+4. Follow what it says.
+
+![Screenshot](https://github.com/Paranoid-AF/arma3-param-gen/raw/master/screenshot.png)

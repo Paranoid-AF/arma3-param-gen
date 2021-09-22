@@ -3,7 +3,6 @@ import pathfinder
 import preset_loader
 import pyperclip
 
-# As this script is Windows-only in the first place, this doesn't seem to matter anyways.
 def send_to_clipboard(content):
   pyperclip.copy(content)
 
@@ -15,7 +14,7 @@ def choose_preset(launcher_path):
   for index, item in enumerate(preset_paths):
     print("{}. {}".format(index + 1, item['id']))
 
-  print("\nChoose a preset to generate parameters with.")
+  print("\nChoose a preset to generate parameters with, or use Ctrl + C to exit.")
   selection = -1
   while(selection < 0):
     try:
