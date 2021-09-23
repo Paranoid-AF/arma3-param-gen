@@ -1,10 +1,11 @@
-import re
 import pathfinder
 import preset_loader
 import pyperclip
+import param_maker
 
 def send_to_clipboard(content):
   pyperclip.copy(content)
+
 
 def choose_preset(launcher_path):
   preset_paths = pathfinder.get_preset_paths(launcher_path)
@@ -29,16 +30,6 @@ def choose_preset(launcher_path):
   
   return preset_paths[selection - 1]
 
-def read_additional_params(launcher_path):
-  log_path = pathfinder.get_log_path(launcher_path)
-  log_file = open(log_path, "r", encoding="utf-8")
-
-  raw_param = ""
-  for line in log_file.readlines():
-    if line.find("GameExecutor:                    parameters:   ") > 0:
-      raw_param = re.sub("^.+GameExecutor:                    parameters:   ", "", line)
-      raw_param = re.sub(' "-mod=.*$', '', raw_param)
-  return raw_param.strip()
 
 def main():
   print("            -== ArmA 3 Launch Parameter Generator ==-")
@@ -53,12 +44,9 @@ def main():
       enabled_mod_paths.append(mod_meta[item])
     else:
       print("Warning: Missing mod: {}".format(item))
-  
-  param_others = read_additional_params(launcher_path)
-  param_mod = '"-mod={}"'.format(";".join(enabled_mod_paths))
 
-  send_to_clipboard(param_others + " " + param_mod)
-  print("Params are copied to your clipboard!")
+  send_to_clipboard(param_maker.make(launcher_path, enabled_mod_paths))
+  print("Parameters are copied to your clipboard!")
 
 
 try:

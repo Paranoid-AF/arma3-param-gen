@@ -52,6 +52,7 @@ def get_all_mods_paths(launcher_path):
 
   return { **workshop_mods_paths, **local_mods_paths }
 
+
 def get_preset_paths(launcher_path):
   preset_directory = os.path.join(launcher_path, "Presets")
   if os.path.isdir(preset_directory):
@@ -69,6 +70,7 @@ def get_preset_paths(launcher_path):
     return paths
   else:
     raise Exception("No preset found!")
+
 
 def get_log_path(launcher_path):
   log_path = os.path.join(launcher_path, "Logs", "Launcher.log")
