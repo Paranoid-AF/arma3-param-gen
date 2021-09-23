@@ -1,7 +1,7 @@
 # ArmA 3 Launch Parameter Generator
-Sometimes you don't want to start ArmA 3 from the launcher, for various reasons. However, launching directly won't enable any mods you've installed, you have to add parameters to let them work.
+Sometimes you don't want to start ArmA 3 from the launcher, for various reasons. However, launching directly won't properly enable mods you've installed, you have to add parameters to let them work.
 
-Sometimes you just have too many mods, which is going to make launch parameters being too long that [Windows can't even handle](https://docs.microsoft.com/en-us/troubleshoot/windows-client/shell-experience/command-line-string-limitation). This tool is going to shorten it by making symbolic links when parameters getting too long.
+Sometimes you just have too many mods, which is going to make launch parameters being too long that [Windows can't even handle](https://docs.microsoft.com/en-us/troubleshoot/windows-client/shell-experience/command-line-string-limitation). This tool is going to shorten it by making junction points when parameters getting too long.
 
 Yes, you could get all the parameters from the launcher's log file. But that's tedious, especially when you have a lot of presets. Not to mention that too many mods may result in some mods not being loaded, as said above.
 
