@@ -84,6 +84,7 @@ def shorten_mod_paths(mod_list):
       answer = input("Parameters are too long! Would you like to shorten it? ({} / {}): ".format(ANSWER_YES.upper(), ANSWER_NO.lower()))
     except KeyboardInterrupt:
       answer = ""
+      quit()
 
   if answer.upper() == ANSWER_YES.upper():
     shortened_paths = list()
