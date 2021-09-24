@@ -6,7 +6,7 @@ import subprocess
 from baseconv import BaseConverter
 
 COMPRESS_BASE = "0123456789abcdefghijklmnopqrstuvwxyz"
-COMMAND_LINE_MAX_LENGTH = 7
+COMMAND_LINE_MAX_LENGTH = 7000
 LINKING_DIRECTORY_NAME = "A3PG"
 ANSWER_YES = "Y"
 ANSWER_NO = "N"
