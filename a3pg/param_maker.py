@@ -3,13 +3,16 @@ import pathfinder
 import ctypes
 import os
 import subprocess
+from baseconv import BaseConverter
 
-COMMAND_LINE_MAX_LENGTH = 7000
+COMPRESS_BASE = "0123456789abcdefghijklmnopqrstuvwxyz"
+COMMAND_LINE_MAX_LENGTH = 7
 LINKING_DIRECTORY_NAME = "A3PG"
 ANSWER_YES = "Y"
 ANSWER_NO = "N"
 
 link_directory = ""
+base_converter = BaseConverter(COMPRESS_BASE)
 
 def find_link_directory():
   global link_directory
@@ -33,14 +36,14 @@ def find_link_directory():
     for idx in range(len(dir_list) - 1, -1, -1):
       dir_name = dir_list[idx]
       try:
-        dir_idx = int(dir_name, base = 16)
+        dir_idx = int(base_converter.decode(dir_name))
         current_name_idx = dir_idx
         break
       except ValueError:
         pass
     
     current_name_idx += 1
-    current_name = hex(current_name_idx)[2:]
+    current_name = base_converter.encode(current_name_idx)
 
     link_directory = os.path.join(root_directory, current_name)
     if not os.path.isdir(link_directory):
@@ -66,7 +69,7 @@ def join_mod_paths(mod_list):
 
 
 def make_link(original, idx):
-  link_name = hex(idx)[2:]
+  link_name = base_converter.encode(idx)
   # Do not compress name if mod.cpp is missing, to preserve mod names.
   if not os.path.exists(os.path.join(original, "mod.cpp")):
     link_name = os.path.basename(original)
