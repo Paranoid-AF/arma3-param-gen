@@ -48,10 +48,9 @@ def main():
   send_to_clipboard(param_maker.make(launcher_path, enabled_mod_paths))
   print("Parameters are copied to your clipboard!")
 
-main()
-""" try:
+
+try:
   main()
 except Exception as e:
   print("ERROR: {}".format(e))
   print("Make sure you have started the game via the official ArmA 3 Launcher at least once, then try again.")
- """
