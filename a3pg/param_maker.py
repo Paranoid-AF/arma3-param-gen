@@ -98,7 +98,7 @@ def shorten_mod_paths(mod_list):
 
   if answer.upper() == ANSWER_YES.upper():
     shortened_paths = list()
-    print("Creating symbolic links, this may take a while.")
+    print("Creating junction points, this may take a while.")
     for path in mod_list:
       shortened_paths.append(make_link(path))
     return shortened_paths
