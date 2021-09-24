@@ -11,7 +11,11 @@ LINKING_DIRECTORY_NAME = "A3PG"
 ANSWER_YES = "Y"
 ANSWER_NO = "N"
 
-link_directory = ""
+DEFAULT_LINK_DIR = ""
+DEFAULT_COUNTER = 0
+
+link_directory = DEFAULT_LINK_DIR
+counter = DEFAULT_COUNTER
 base_converter = BaseConverter(COMPRESS_BASE)
 
 def find_link_directory():
@@ -68,11 +72,14 @@ def join_mod_paths(mod_list):
   return '"-mod={}"'.format(";".join(mod_list))
 
 
-def make_link(original, idx):
-  link_name = base_converter.encode(idx)
+def make_link(original):
+  global counter
+  link_name = base_converter.encode(counter)
   # Do not compress name if mod.cpp is missing, to preserve mod names.
-  if not os.path.exists(os.path.join(original, "mod.cpp")):
+  if (not os.path.exists(os.path.join(original, "mod.cpp"))) or (not os.path.exists(os.path.join(original, "meta.cpp"))):
     link_name = os.path.basename(original)
+  else:
+    counter += 1
 
   root_dir = find_link_directory()
   link_path = os.path.join(root_dir, link_name)
@@ -92,14 +99,20 @@ def shorten_mod_paths(mod_list):
   if answer.upper() == ANSWER_YES.upper():
     shortened_paths = list()
     print("Creating symbolic links, this may take a while.")
-    for idx, path in enumerate(mod_list):
-      shortened_paths.append(make_link(path, idx))
+    for path in mod_list:
+      shortened_paths.append(make_link(path))
     return shortened_paths
 
   return mod_list
 
 
 def make(launcher_path, mod_list):
+  global link_directory
+  global counter
+
+  link_directory = DEFAULT_LINK_DIR
+  counter = DEFAULT_COUNTER
+
   param_others = read_additional_params(launcher_path)
   params = param_others + " " + join_mod_paths(mod_list)
 
