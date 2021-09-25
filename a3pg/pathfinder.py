@@ -42,13 +42,13 @@ def get_all_mods_paths(launcher_path):
     workshop_mods_paths = get_workshop_mods_paths(launcher_path)
   except Exception:
     workshop_mods_paths = dict()
-    print("Warning: No workshop mods found!")
+    print("WARNING: Workshop mods not found!")
   
   try:
     local_mods_paths = get_local_mods_paths(launcher_path)
   except Exception:
     local_mods_paths = dict()
-    print("Warning: No local mods found!")
+    print("WARNING: Local mods not found!")
 
   return { **workshop_mods_paths, **local_mods_paths }
 

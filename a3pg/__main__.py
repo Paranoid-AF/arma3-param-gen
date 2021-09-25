@@ -43,7 +43,7 @@ def main():
     if item in mod_meta:
       enabled_mod_paths.append(mod_meta[item])
     else:
-      print("Warning: Missing mod: {}".format(item))
+      print("WARNING: Missing mod: {}".format(item))
 
   send_to_clipboard(param_maker.make(launcher_path, enabled_mod_paths))
   print("Parameters are copied to your clipboard!")
