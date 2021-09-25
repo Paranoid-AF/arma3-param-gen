@@ -65,6 +65,7 @@ def read_additional_params(launcher_path):
     if line.find("GameExecutor:                    parameters:   ") > 0:
       raw_param = re.sub("^.+GameExecutor:                    parameters:   ", "", line)
       raw_param = re.sub(' "-mod=.*$', '', raw_param)
+  log_file.close()
   return raw_param.strip()
 
 
